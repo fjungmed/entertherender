@@ -74,6 +74,9 @@ export const PROJECTS = [
       "/images/portfolio/residencia-costeira/08.webp",
       "/images/portfolio/residencia-costeira/09.webp",
     ],
+    videos: [
+      "/videos/CasaModerna.mp4",
+    ],
   },
   {
     id: 2,
@@ -94,6 +97,10 @@ export const PROJECTS = [
       "/images/portfolio/loft-contemporaneo/05.webp",
       "/images/portfolio/loft-contemporaneo/06.webp",
     ],
+    videos: [
+      "/videos/Living.mp4",
+      "/videos/Banho.mp4",
+    ],
   },
   {
     id: 3,
@@ -110,6 +117,7 @@ export const PROJECTS = [
       "/images/portfolio/fachada-monolito/hero.webp",
       "/images/portfolio/fachada-monolito/02.webp",
     ],
+    videos: [],
   },
   {
     id: 4,
@@ -127,6 +135,9 @@ export const PROJECTS = [
       "/images/portfolio/refugio-mineral/01.webp",
       "/images/portfolio/refugio-mineral/02.webp",
       "/images/portfolio/refugio-mineral/03.webp",
+    ],
+    videos: [
+      "/videos/CasaBosque.mp4",
     ],
   },
 ];

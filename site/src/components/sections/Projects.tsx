@@ -199,9 +199,14 @@ export function Projects() {
                   background: "rgba(61,48,36,0.7)",
                   padding: "4px 8px",
                   letterSpacing: "1px",
+                  display: "flex",
+                  gap: "8px",
                 }}
               >
-                {project.gallery.length} FOTOS
+                <span>{project.gallery.length} FOTOS</span>
+                {project.videos.length > 0 && (
+                  <span style={{ color: "#C4963A" }}>+ {project.videos.length} VIDEO{project.videos.length > 1 ? "S" : ""}</span>
+                )}
               </div>
 
               {/* Bottom info */}

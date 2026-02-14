@@ -15,6 +15,7 @@ interface Project {
   heroImage: string;
   description: string;
   gallery: string[];
+  videos: string[];
 }
 
 interface ProjectModalProps {
@@ -22,13 +23,25 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+type MediaItem = { type: "image" | "video"; src: string };
+
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Combine images and videos into one media array
+  const mediaItems: MediaItem[] = project
+    ? [
+        ...project.gallery.map((src) => ({ type: "image" as const, src })),
+        ...project.videos.map((src) => ({ type: "video" as const, src })),
+      ]
+    : [];
+
+  const currentMedia = mediaItems[currentIndex];
 
   useEffect(() => {
     if (project) {
       document.body.style.overflow = "hidden";
-      setCurrentImage(0);
+      setCurrentIndex(0);
     } else {
       document.body.style.overflow = "";
     }
@@ -41,12 +54,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!project) return;
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") setCurrentImage((prev) => (prev + 1) % project.gallery.length);
-      if (e.key === "ArrowLeft") setCurrentImage((prev) => (prev - 1 + project.gallery.length) % project.gallery.length);
+      if (e.key === "ArrowRight") setCurrentIndex((prev) => (prev + 1) % mediaItems.length);
+      if (e.key === "ArrowLeft") setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [project, onClose]);
+  }, [project, onClose, mediaItems.length]);
 
   if (!project) return null;
 
@@ -56,7 +69,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         position: "fixed",
         inset: 0,
         zIndex: 1000,
-        background: "rgba(61,48,36,0.95)",
+        background: "rgba(61,48,36,0.98)",
         backdropFilter: "blur(10px)",
         display: "flex",
         alignItems: "center",
@@ -67,9 +80,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     >
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1400px",
           width: "100%",
-          maxHeight: "90vh",
+          maxHeight: "95vh",
           background: "#F5F0E8",
           border: `2px solid ${project.color}`,
           overflow: "hidden",
@@ -81,11 +94,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Header */}
         <div
           style={{
-            padding: "20px 24px",
+            padding: "16px 24px",
             borderBottom: "1px solid #D4C4A8",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            flexShrink: 0,
           }}
         >
           <div>
@@ -103,7 +117,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             <h3
               style={{
                 fontFamily: "monospace",
-                fontSize: "20px",
+                fontSize: "18px",
                 fontWeight: "bold",
                 color: "#3A4828",
                 letterSpacing: "2px",
@@ -121,7 +135,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               border: "1px solid #D4C4A8",
               cursor: "pointer",
               fontFamily: "monospace",
-              fontSize: "18px",
+              fontSize: "20px",
               color: "#7A6248",
               transition: "all 0.3s",
             }}
@@ -138,27 +152,49 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           </button>
         </div>
 
-        {/* Main image */}
+        {/* Main media area - with contain to see full image */}
         <div
           style={{
+            flex: 1,
+            minHeight: 0,
             position: "relative",
-            height: "400px",
-            background: "#E8DCC8",
+            background: "#1a1a1a",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <Image
-            src={project.gallery[currentImage]}
-            alt={`${project.title} - ${currentImage + 1}`}
-            fill
-            style={{ objectFit: "cover" }}
-            sizes="100vw"
-          />
+          {currentMedia?.type === "image" ? (
+            <Image
+              src={currentMedia.src}
+              alt={`${project.title} - ${currentIndex + 1}`}
+              fill
+              style={{
+                objectFit: "contain",
+                padding: "20px",
+              }}
+              sizes="100vw"
+            />
+          ) : currentMedia?.type === "video" ? (
+            <video
+              key={currentMedia.src}
+              controls
+              autoPlay
+              style={{
+                maxWidth: "100%",
+                maxHeight: "100%",
+                objectFit: "contain",
+              }}
+            >
+              <source src={currentMedia.src} type="video/mp4" />
+            </video>
+          ) : null}
 
           {/* Navigation arrows */}
-          {project.gallery.length > 1 && (
+          {mediaItems.length > 1 && (
             <>
               <button
-                onClick={() => setCurrentImage((prev) => (prev - 1 + project.gallery.length) % project.gallery.length)}
+                onClick={() => setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length)}
                 style={{
                   position: "absolute",
                   left: "16px",
@@ -166,18 +202,27 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   transform: "translateY(-50%)",
                   width: "48px",
                   height: "48px",
-                  background: "rgba(245,240,232,0.9)",
+                  background: "rgba(245,240,232,0.95)",
                   border: "none",
                   cursor: "pointer",
                   fontFamily: "monospace",
                   fontSize: "20px",
                   color: "#3A4828",
+                  transition: "all 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = project.color;
+                  e.currentTarget.style.color = "#F5F0E8";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(245,240,232,0.95)";
+                  e.currentTarget.style.color = "#3A4828";
                 }}
               >
                 ←
               </button>
               <button
-                onClick={() => setCurrentImage((prev) => (prev + 1) % project.gallery.length)}
+                onClick={() => setCurrentIndex((prev) => (prev + 1) % mediaItems.length)}
                 style={{
                   position: "absolute",
                   right: "16px",
@@ -185,12 +230,21 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   transform: "translateY(-50%)",
                   width: "48px",
                   height: "48px",
-                  background: "rgba(245,240,232,0.9)",
+                  background: "rgba(245,240,232,0.95)",
                   border: "none",
                   cursor: "pointer",
                   fontFamily: "monospace",
                   fontSize: "20px",
                   color: "#3A4828",
+                  transition: "all 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = project.color;
+                  e.currentTarget.style.color = "#F5F0E8";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(245,240,232,0.95)";
+                  e.currentTarget.style.color = "#3A4828";
                 }}
               >
                 →
@@ -198,56 +252,74 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             </>
           )}
 
-          {/* Image counter */}
+          {/* Media counter and type indicator */}
           <div
             style={{
               position: "absolute",
               bottom: "16px",
               right: "16px",
-              background: "rgba(61,48,36,0.8)",
-              padding: "8px 12px",
+              background: "rgba(61,48,36,0.9)",
+              padding: "8px 14px",
               fontFamily: "monospace",
               fontSize: "10px",
               color: "#F5F0E8",
               letterSpacing: "2px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            {String(currentImage + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}
+            <span style={{ color: currentMedia?.type === "video" ? "#C4963A" : "#6B7F4A" }}>
+              {currentMedia?.type === "video" ? "▶ VIDEO" : "◼ FOTO"}
+            </span>
+            <span>
+              {String(currentIndex + 1).padStart(2, "0")} / {String(mediaItems.length).padStart(2, "0")}
+            </span>
           </div>
         </div>
 
         {/* Thumbnails */}
         <div
           style={{
-            padding: "16px",
+            padding: "12px 16px",
             borderTop: "1px solid #D4C4A8",
             display: "flex",
             gap: "8px",
             overflowX: "auto",
+            flexShrink: 0,
+            background: "#F5F0E8",
           }}
         >
-          {project.gallery.map((img, idx) => (
+          {mediaItems.map((item, idx) => (
             <div
               key={idx}
-              onClick={() => setCurrentImage(idx)}
+              onClick={() => setCurrentIndex(idx)}
               style={{
-                width: "80px",
-                height: "60px",
+                width: "70px",
+                height: "50px",
                 flexShrink: 0,
                 position: "relative",
                 cursor: "pointer",
-                border: currentImage === idx ? `2px solid ${project.color}` : "2px solid transparent",
-                opacity: currentImage === idx ? 1 : 0.6,
+                border: currentIndex === idx ? `2px solid ${project.color}` : "2px solid transparent",
+                opacity: currentIndex === idx ? 1 : 0.6,
                 transition: "all 0.3s",
+                background: item.type === "video" ? "#1a1a1a" : "#E8DCC8",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <Image
-                src={img}
-                alt={`Thumb ${idx + 1}`}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="80px"
-              />
+              {item.type === "image" ? (
+                <Image
+                  src={item.src}
+                  alt={`Thumb ${idx + 1}`}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="70px"
+                />
+              ) : (
+                <span style={{ color: "#C4963A", fontSize: "16px" }}>▶</span>
+              )}
             </div>
           ))}
         </div>
@@ -255,26 +327,27 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Info */}
         <div
           style={{
-            padding: "20px 24px",
+            padding: "16px 24px",
             borderTop: "1px solid #D4C4A8",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-start",
             gap: "40px",
+            flexShrink: 0,
           }}
         >
           <p
             style={{
               fontFamily: "monospace",
-              fontSize: "13px",
-              lineHeight: 1.8,
+              fontSize: "12px",
+              lineHeight: 1.7,
               color: "#5C4A36",
               flex: 1,
             }}
           >
             {project.description}
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px", flexShrink: 0 }}>
             <div
               style={{
                 fontSize: "9px",
@@ -287,7 +360,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
             <div
               style={{
-                fontSize: "10px",
+                fontSize: "9px",
                 letterSpacing: "2px",
                 fontFamily: "monospace",
                 padding: "6px 12px",
