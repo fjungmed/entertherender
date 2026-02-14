@@ -49,10 +49,9 @@ export function Hero({ showContent }: HeroProps) {
         textAlign: "center",
       }}
     >
-      {/* Logo grande [ETR] com text-shadow */}
+      {/* Logo grande [ETR] com text-shadow - TUDO em Press Start 2P */}
       <div
         style={{
-          fontFamily: "var(--font-press-start)",
           fontSize: "clamp(32px, 8vw, 80px)",
           letterSpacing: "6px",
           marginBottom: "16px",
@@ -60,11 +59,11 @@ export function Hero({ showContent }: HeroProps) {
           textShadow: "4px 4px 0 #D4C4A8",
         }}
       >
-        <span style={{ color: "#8B2D2D" }}>[</span>
-        <span style={{ color: "#C4963A" }}>E</span>
-        <span style={{ color: "#3A4828" }}>T</span>
-        <span style={{ color: "#3A4828" }}>R</span>
-        <span style={{ color: "#8B2D2D" }}>]</span>
+        <span style={{ fontFamily: "var(--font-press-start)", color: "#8B2D2D" }}>[</span>
+        <span style={{ fontFamily: "var(--font-press-start)", color: "#C4963A" }}>E</span>
+        <span style={{ fontFamily: "var(--font-press-start)", color: "#3A4828" }}>T</span>
+        <span style={{ fontFamily: "var(--font-press-start)", color: "#3A4828" }}>R</span>
+        <span style={{ fontFamily: "var(--font-press-start)", color: "#8B2D2D" }}>]</span>
       </div>
 
       {/* ENTER THE RENDER - Orbitron 700 */}

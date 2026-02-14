@@ -13,19 +13,19 @@ export function Footer() {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        {/* [ETR] logo com text-shadow */}
+        {/* [ETR] logo com text-shadow - TUDO em Press Start 2P */}
         <span
           style={{
-            fontFamily: "var(--font-press-start)",
             fontSize: "8px",
             letterSpacing: "2px",
             textShadow: "2px 2px 0 rgba(0,0,0,0.3)",
           }}
         >
-          <span style={{ color: "#8B2D2D" }}>[</span>
-          <span style={{ color: "#C4963A" }}>E</span>
-          <span style={{ color: "#D4C4A8" }}>TR</span>
-          <span style={{ color: "#8B2D2D" }}>]</span>
+          <span style={{ fontFamily: "var(--font-press-start)", color: "#8B2D2D" }}>[</span>
+          <span style={{ fontFamily: "var(--font-press-start)", color: "#C4963A" }}>E</span>
+          <span style={{ fontFamily: "var(--font-press-start)", color: "#D4C4A8" }}>T</span>
+          <span style={{ fontFamily: "var(--font-press-start)", color: "#D4C4A8" }}>R</span>
+          <span style={{ fontFamily: "var(--font-press-start)", color: "#8B2D2D" }}>]</span>
         </span>
         {/* ENTER THE RENDER - Orbitron 700 */}
         <span
