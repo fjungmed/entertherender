@@ -222,35 +222,6 @@ export function Hero({ showContent }: HeroProps) {
         ))}
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "40px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "8px",
-        }}
-      >
-        <span
-          style={{
-            fontSize: "9px",
-            letterSpacing: "3px",
-            fontFamily: "monospace",
-            color: "#A68B6B",
-          }}
-        >
-          SCROLL
-        </span>
-        <div
-          style={{
-            width: "1px",
-            height: "32px",
-            background: "linear-gradient(to bottom, #A68B6B, transparent)",
-          }}
-        />
-      </div>
     </section>
   );
 }
