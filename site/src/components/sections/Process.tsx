@@ -25,7 +25,8 @@ export function Process() {
             gap: "12px",
           }}
         >
-          <span style={{ color: "#C4963A" }}>//</span> 03 — PROCESSO
+          <span style={{ color: "#C4963A", fontFamily: "var(--font-press-start)", fontSize: "8px" }}>//</span>
+          <span style={{ fontFamily: "var(--font-press-start)", fontSize: "8px" }}>03</span> — PROCESSO
         </div>
         <h2
           style={{

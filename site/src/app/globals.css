@@ -49,6 +49,7 @@
   --color-foreground: var(--foreground);
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
   --font-display: 'Orbitron', sans-serif;
+  --font-pixel: 'Press Start 2P', cursive;
 }
 
 * {

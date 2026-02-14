@@ -35,7 +35,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       }`}
     >
       {/* Logo */}
-      <div className="font-mono text-[clamp(20px,4vw,36px)] font-bold tracking-[6px] mb-12">
+      <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[clamp(16px,3vw,28px)] tracking-[4px] mb-12">
         <span className="text-[#8B2D2D]">[</span>
         <span className="text-[#D4A64A]">E</span>
         <span>T</span>
@@ -52,7 +52,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       </div>
 
       {/* Progress text */}
-      <div className="text-[10px] tracking-[3px] text-[#8B9A6B]">
+      <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[8px] tracking-[2px] text-[#8B9A6B]">
         LOADING WORLD... {Math.min(Math.round(progress), 100)}%
       </div>
     </div>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <!-- [ETR] -->
+  <text x="200" y="72" font-family="monospace" font-weight="bold" font-size="80" text-anchor="middle" letter-spacing="6">
+    <tspan fill="#8B2D2D" opacity="0.8">[</tspan><tspan fill="#C4963A">E</tspan><tspan fill="#3A4828">T</tspan><tspan fill="#3A4828">R</tspan><tspan fill="#8B2D2D" opacity="0.8">]</tspan>
+  </text>
+</svg>

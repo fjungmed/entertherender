@@ -37,10 +37,9 @@ export function Navbar() {
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <span
           style={{
-            fontFamily: "monospace",
-            fontSize: "14px",
-            fontWeight: "bold",
-            letterSpacing: "3px",
+            fontFamily: "var(--font-press-start)",
+            fontSize: "11px",
+            letterSpacing: "2px",
           }}
         >
           <span style={{ color: "#8B2D2D" }}>[</span>

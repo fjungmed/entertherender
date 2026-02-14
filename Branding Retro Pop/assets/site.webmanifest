@@ -1,0 +1,21 @@
+{
+  "name": "Enter the Render",
+  "short_name": "ETR",
+  "description": "Archviz Studio \u2014 Building Worlds. Rendering Futures.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#3A4828",
+  "theme_color": "#3A4828",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

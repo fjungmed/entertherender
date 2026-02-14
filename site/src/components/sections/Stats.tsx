@@ -24,9 +24,8 @@ export function Stats() {
         >
           <div
             style={{
-              fontFamily: "monospace",
-              fontSize: "clamp(20px, 3vw, 32px)",
-              fontWeight: "bold",
+              fontFamily: "var(--font-press-start)",
+              fontSize: "clamp(14px, 2.5vw, 24px)",
               color: "#C4963A",
               marginBottom: "8px",
             }}

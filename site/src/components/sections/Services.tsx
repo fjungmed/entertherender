@@ -28,7 +28,8 @@ export function Services() {
             gap: "12px",
           }}
         >
-          <span style={{ color: "#C4963A" }}>//</span> 01 — SERVIÇOS
+          <span style={{ color: "#C4963A", fontFamily: "var(--font-press-start)", fontSize: "8px" }}>//</span>
+          <span style={{ fontFamily: "var(--font-press-start)", fontSize: "8px" }}>01</span> — SERVIÇOS
         </div>
         <h2
           style={{

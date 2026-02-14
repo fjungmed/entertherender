@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Orbitron } from "next/font/google";
+import { IBM_Plex_Mono, Orbitron, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -13,6 +13,13 @@ const orbitron = Orbitron({
   variable: "--font-orbitron",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+const pressStart2P = Press_Start_2P({
+  variable: "--font-press-start",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -81,7 +88,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${ibmPlexMono.variable} ${orbitron.variable} antialiased`} suppressHydrationWarning>
+      <body className={`${ibmPlexMono.variable} ${orbitron.variable} ${pressStart2P.variable} antialiased`} suppressHydrationWarning>
         {children}
       </body>
     </html>

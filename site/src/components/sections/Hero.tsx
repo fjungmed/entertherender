@@ -52,11 +52,10 @@ export function Hero({ showContent }: HeroProps) {
       {/* Logo grande */}
       <div
         style={{
-          fontFamily: "monospace",
-          fontSize: "clamp(48px, 10vw, 120px)",
-          fontWeight: "bold",
-          letterSpacing: "8px",
-          marginBottom: "10px",
+          fontFamily: "var(--font-press-start)",
+          fontSize: "clamp(32px, 8vw, 80px)",
+          letterSpacing: "6px",
+          marginBottom: "16px",
           lineHeight: 1,
         }}
       >
@@ -69,16 +68,15 @@ export function Hero({ showContent }: HeroProps) {
 
       <div
         style={{
-          fontSize: "clamp(10px, 1.5vw, 15px)",
-          letterSpacing: "clamp(6px, 1.5vw, 14px)",
-          fontFamily: "monospace",
+          fontSize: "clamp(8px, 1.2vw, 12px)",
+          letterSpacing: "clamp(4px, 1.2vw, 10px)",
+          fontFamily: "var(--font-press-start)",
           color: "#6B7F4A",
-          fontWeight: "bold",
           marginBottom: "40px",
           textTransform: "uppercase",
         }}
       >
-        ENTER THE RENDER
+        E N T E R&nbsp;&nbsp;&nbsp;T H E&nbsp;&nbsp;&nbsp;R E N D E R
       </div>
 
       {/* Manifesto */}

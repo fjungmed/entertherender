@@ -34,7 +34,8 @@ export function Contact() {
               gap: "12px",
             }}
           >
-            <span style={{ color: "#C4963A" }}>//</span> 04 — CONTATO
+            <span style={{ color: "#C4963A", fontFamily: "var(--font-press-start)", fontSize: "8px" }}>//</span>
+            <span style={{ fontFamily: "var(--font-press-start)", fontSize: "8px" }}>04</span> — CONTATO
           </div>
           <h2
             style={{

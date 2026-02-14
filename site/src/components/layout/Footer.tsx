@@ -14,8 +14,8 @@ export function Footer() {
     >
       <div
         style={{
-          fontFamily: "monospace",
-          fontSize: "10px",
+          fontFamily: "var(--font-press-start)",
+          fontSize: "8px",
           color: "#D4C4A8",
           letterSpacing: "2px",
           display: "flex",
@@ -26,7 +26,7 @@ export function Footer() {
         <span style={{ color: "#8B2D2D" }}>[</span>
         <span>ETR</span>
         <span style={{ color: "#8B2D2D" }}>]</span>
-        <span style={{ color: "#7A6248" }}>// ENTER THE RENDER</span>
+        <span style={{ color: "#7A6248", fontFamily: "monospace", fontSize: "10px" }}>// ENTER THE RENDER</span>
       </div>
       <div
         style={{
