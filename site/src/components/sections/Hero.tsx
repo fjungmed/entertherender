@@ -43,7 +43,7 @@ export function Hero({ showContent }: HeroProps) {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        padding: "140px 40px 60px",
+        padding: "140px 40px 100px",
         position: "relative",
         zIndex: 1,
         textAlign: "center",
