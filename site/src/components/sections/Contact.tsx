@@ -1,8 +1,58 @@
 "use client";
 
+import { useState, FormEvent } from "react";
 import { CONTACT, WHATSAPP_URL } from "@/lib/constants";
 
 export function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    projectType: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    try {
+      // Using Web3Forms - free email service
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_WEB3FORMS_KEY", // User needs to replace this
+          subject: `Novo projeto: ${formData.projectType} - ${formData.name}`,
+          from_name: formData.name,
+          email: formData.email,
+          message: `
+Nome: ${formData.name}
+Email: ${formData.email}
+Tipo de Projeto: ${formData.projectType}
+
+Mensagem:
+${formData.message}
+          `,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", projectType: "", message: "" });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -66,17 +116,22 @@ export function Contact() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             {[
-              { label: "EMAIL", value: CONTACT.email },
-              { label: "WHATSAPP", value: CONTACT.phone },
-              { label: "INSTAGRAM", value: CONTACT.instagram },
-              { label: "BEHANCE", value: CONTACT.behance },
+              { label: "EMAIL", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
+              { label: "WHATSAPP", value: CONTACT.phone, href: WHATSAPP_URL },
+              { label: "INSTAGRAM", value: CONTACT.instagram, href: `https://instagram.com/${CONTACT.instagram.replace("@", "")}` },
+              { label: "BEHANCE", value: CONTACT.behance, href: `https://${CONTACT.behance}` },
             ].map((item) => (
-              <div
+              <a
                 key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "16px",
+                  textDecoration: "none",
+                  transition: "all 0.3s",
                 }}
               >
                 <span
@@ -100,12 +155,13 @@ export function Contact() {
                 >
                   {item.value}
                 </span>
-              </div>
+              </a>
             ))}
           </div>
         </div>
 
-        <div
+        <form
+          onSubmit={handleSubmit}
           style={{
             background: "#F5F0E8",
             border: "2px solid #D4C4A8",
@@ -127,79 +183,175 @@ export function Contact() {
             <span style={{ color: "#8B2D2D" }}>&gt;</span> NOVO_PROJETO.INIT
           </div>
 
-          {["NOME", "EMAIL", "TIPO DE PROJETO", "MENSAGEM"].map((field, i) => (
-            <div key={field}>
-              <label
-                style={{
-                  display: "block",
-                  fontSize: "9px",
-                  letterSpacing: "2px",
-                  fontFamily: "monospace",
-                  color: "#A68B6B",
-                  marginBottom: "8px",
-                }}
-              >
-                {field}
-              </label>
-              {i === 3 ? (
-                <textarea
-                  rows={4}
-                  style={{
-                    width: "100%",
-                    padding: "12px",
-                    background: "#FAF7F0",
-                    border: "1px solid #D4C4A8",
-                    fontFamily: "monospace",
-                    fontSize: "12px",
-                    color: "#3D3024",
-                    outline: "none",
-                    resize: "vertical",
-                  }}
-                />
-              ) : (
-                <input
-                  type={i === 1 ? "email" : "text"}
-                  style={{
-                    width: "100%",
-                    padding: "12px",
-                    background: "#FAF7F0",
-                    border: "1px solid #D4C4A8",
-                    fontFamily: "monospace",
-                    fontSize: "12px",
-                    color: "#3D3024",
-                    outline: "none",
-                  }}
-                />
-              )}
-            </div>
-          ))}
+          <div>
+            <label
+              style={{
+                display: "block",
+                fontSize: "9px",
+                letterSpacing: "2px",
+                fontFamily: "monospace",
+                color: "#A68B6B",
+                marginBottom: "8px",
+              }}
+            >
+              NOME
+            </label>
+            <input
+              type="text"
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              style={{
+                width: "100%",
+                padding: "12px",
+                background: "#FAF7F0",
+                border: "1px solid #D4C4A8",
+                fontFamily: "monospace",
+                fontSize: "12px",
+                color: "#3D3024",
+                outline: "none",
+              }}
+            />
+          </div>
+
+          <div>
+            <label
+              style={{
+                display: "block",
+                fontSize: "9px",
+                letterSpacing: "2px",
+                fontFamily: "monospace",
+                color: "#A68B6B",
+                marginBottom: "8px",
+              }}
+            >
+              EMAIL
+            </label>
+            <input
+              type="email"
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              style={{
+                width: "100%",
+                padding: "12px",
+                background: "#FAF7F0",
+                border: "1px solid #D4C4A8",
+                fontFamily: "monospace",
+                fontSize: "12px",
+                color: "#3D3024",
+                outline: "none",
+              }}
+            />
+          </div>
+
+          <div>
+            <label
+              style={{
+                display: "block",
+                fontSize: "9px",
+                letterSpacing: "2px",
+                fontFamily: "monospace",
+                color: "#A68B6B",
+                marginBottom: "8px",
+              }}
+            >
+              TIPO DE PROJETO
+            </label>
+            <select
+              required
+              value={formData.projectType}
+              onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+              style={{
+                width: "100%",
+                padding: "12px",
+                background: "#FAF7F0",
+                border: "1px solid #D4C4A8",
+                fontFamily: "monospace",
+                fontSize: "12px",
+                color: "#3D3024",
+                outline: "none",
+                cursor: "pointer",
+              }}
+            >
+              <option value="">Selecione...</option>
+              <option value="ARCHVIZ">ARCHVIZ - Imagens Estáticas</option>
+              <option value="IMERSAO">IMERSÃO 3D - Real-Time Tours</option>
+              <option value="FILME">FILME - Animação Arquitetônica</option>
+              <option value="AI">AI-ENHANCED - Visualização Generativa</option>
+              <option value="OUTRO">OUTRO</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style={{
+                display: "block",
+                fontSize: "9px",
+                letterSpacing: "2px",
+                fontFamily: "monospace",
+                color: "#A68B6B",
+                marginBottom: "8px",
+              }}
+            >
+              MENSAGEM
+            </label>
+            <textarea
+              rows={4}
+              required
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              style={{
+                width: "100%",
+                padding: "12px",
+                background: "#FAF7F0",
+                border: "1px solid #D4C4A8",
+                fontFamily: "monospace",
+                fontSize: "12px",
+                color: "#3D3024",
+                outline: "none",
+                resize: "vertical",
+              }}
+            />
+          </div>
 
           <button
+            type="submit"
+            disabled={status === "sending"}
             style={{
               padding: "16px",
-              background: "#3A4828",
+              background: status === "success" ? "#4A5A33" : status === "error" ? "#8B2D2D" : "#3A4828",
               color: "#F5F0E8",
-              border: "2px solid #3A4828",
+              border: "2px solid",
+              borderColor: status === "success" ? "#4A5A33" : status === "error" ? "#8B2D2D" : "#3A4828",
               fontFamily: "monospace",
               fontSize: "11px",
               letterSpacing: "3px",
               fontWeight: "bold",
-              cursor: "pointer",
+              cursor: status === "sending" ? "wait" : "pointer",
               transition: "all 0.3s",
               marginTop: "8px",
+              opacity: status === "sending" ? 0.7 : 1,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#C4963A";
-              e.currentTarget.style.borderColor = "#C4963A";
-              e.currentTarget.style.color = "#3D3024";
+              if (status === "idle") {
+                e.currentTarget.style.background = "#C4963A";
+                e.currentTarget.style.borderColor = "#C4963A";
+                e.currentTarget.style.color = "#3D3024";
+              }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#3A4828";
-              e.currentTarget.style.borderColor = "#3A4828";
-              e.currentTarget.style.color = "#F5F0E8";
+              if (status === "idle") {
+                e.currentTarget.style.background = "#3A4828";
+                e.currentTarget.style.borderColor = "#3A4828";
+                e.currentTarget.style.color = "#F5F0E8";
+              }
             }}
           >
-            EXECUTAR →
+            {status === "sending" && "ENVIANDO..."}
+            {status === "success" && "ENVIADO COM SUCESSO!"}
+            {status === "error" && "ERRO - TENTE NOVAMENTE"}
+            {status === "idle" && "EXECUTAR →"}
           </button>
 
           <a
@@ -233,7 +385,7 @@ export function Contact() {
           >
             CONVERSAR NO WHATSAPP →
           </a>
-        </div>
+        </form>
       </div>
     </section>
   );

@@ -62,6 +62,18 @@ export const PROJECTS = [
     type: "ARCHVIZ + FILME",
     color: "#6B7F4A",
     heroImage: "/images/portfolio/residencia-costeira/hero.webp",
+    description: "Residência de alto padrão com vista para o mar. Projeto focado em integração com a natureza e materiais nobres.",
+    gallery: [
+      "/images/portfolio/residencia-costeira/hero.webp",
+      "/images/portfolio/residencia-costeira/01.webp",
+      "/images/portfolio/residencia-costeira/02.webp",
+      "/images/portfolio/residencia-costeira/04.webp",
+      "/images/portfolio/residencia-costeira/05.webp",
+      "/images/portfolio/residencia-costeira/06.webp",
+      "/images/portfolio/residencia-costeira/07.webp",
+      "/images/portfolio/residencia-costeira/08.webp",
+      "/images/portfolio/residencia-costeira/09.webp",
+    ],
   },
   {
     id: 2,
@@ -73,6 +85,15 @@ export const PROJECTS = [
     type: "IMERSÃO 3D",
     color: "#C4963A",
     heroImage: "/images/portfolio/loft-contemporaneo/hero.webp",
+    description: "Loft industrial moderno com pé-direito duplo. Experiência imersiva em tempo real com troca de materiais.",
+    gallery: [
+      "/images/portfolio/loft-contemporaneo/hero.webp",
+      "/images/portfolio/loft-contemporaneo/02.webp",
+      "/images/portfolio/loft-contemporaneo/03.webp",
+      "/images/portfolio/loft-contemporaneo/04.webp",
+      "/images/portfolio/loft-contemporaneo/05.webp",
+      "/images/portfolio/loft-contemporaneo/06.webp",
+    ],
   },
   {
     id: 3,
@@ -84,6 +105,11 @@ export const PROJECTS = [
     type: "ARCHVIZ",
     color: "#8B2D2D",
     heroImage: "/images/portfolio/fachada-monolito/hero.webp",
+    description: "Edifício comercial com fachada escultural em concreto aparente. Render fotorrealista para aprovação de projeto.",
+    gallery: [
+      "/images/portfolio/fachada-monolito/hero.webp",
+      "/images/portfolio/fachada-monolito/02.webp",
+    ],
   },
   {
     id: 4,
@@ -95,6 +121,13 @@ export const PROJECTS = [
     type: "FILME + AI",
     color: "#4A5A33",
     heroImage: "/images/portfolio/refugio-mineral/hero.webp",
+    description: "Casa de campo com acabamentos em pedra natural. Filme arquitetônico com atmosfera contemplativa.",
+    gallery: [
+      "/images/portfolio/refugio-mineral/hero.webp",
+      "/images/portfolio/refugio-mineral/01.webp",
+      "/images/portfolio/refugio-mineral/02.webp",
+      "/images/portfolio/refugio-mineral/03.webp",
+    ],
   },
 ];
 

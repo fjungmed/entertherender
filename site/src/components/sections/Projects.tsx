@@ -3,9 +3,27 @@
 import { useState } from "react";
 import Image from "next/image";
 import { PROJECTS, WHATSAPP_URL } from "@/lib/constants";
+import { ProjectModal } from "./ProjectModal";
+
+type Project = typeof PROJECTS[number];
 
 export function Projects() {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  // Get unique categories
+  const categories = [...new Set(PROJECTS.map((p) => p.category))];
+
+  // Filter projects
+  const filteredProjects = activeCategory
+    ? PROJECTS.filter((p) => p.category === activeCategory)
+    : PROJECTS;
+
+  // Limit display if not showing all
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
+  const hasMore = filteredProjects.length > 4 && !showAll;
 
   return (
     <section
@@ -40,12 +58,64 @@ export function Projects() {
             fontSize: "clamp(24px, 3.5vw, 42px)",
             fontWeight: "bold",
             color: "#3A4828",
-            marginBottom: "48px",
+            marginBottom: "32px",
             lineHeight: 1.2,
           }}
         >
           Mundos <span style={{ color: "#C4963A" }}>renderizados</span>
         </h2>
+
+        {/* Category filters */}
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            marginBottom: "32px",
+            flexWrap: "wrap",
+          }}
+        >
+          <button
+            onClick={() => {
+              setActiveCategory(null);
+              setShowAll(false);
+            }}
+            style={{
+              padding: "8px 16px",
+              fontSize: "10px",
+              letterSpacing: "2px",
+              fontFamily: "monospace",
+              background: activeCategory === null ? "#3A4828" : "transparent",
+              color: activeCategory === null ? "#F5F0E8" : "#6B7F4A",
+              border: "1px solid #6B7F4A",
+              cursor: "pointer",
+              transition: "all 0.3s",
+            }}
+          >
+            TODOS
+          </button>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                setShowAll(false);
+              }}
+              style={{
+                padding: "8px 16px",
+                fontSize: "10px",
+                letterSpacing: "2px",
+                fontFamily: "monospace",
+                background: activeCategory === cat ? "#3A4828" : "transparent",
+                color: activeCategory === cat ? "#F5F0E8" : "#6B7F4A",
+                border: "1px solid #6B7F4A",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
         <div
           style={{
@@ -54,9 +124,10 @@ export function Projects() {
             gap: "24px",
           }}
         >
-          {PROJECTS.map((project) => (
+          {displayedProjects.map((project) => (
             <div
               key={project.id}
+              onClick={() => setSelectedProject(project)}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
               style={{
@@ -110,9 +181,27 @@ export function Projects() {
                   padding: "4px 10px",
                   border: `1px solid ${project.color}40`,
                   color: project.color,
+                  background: "rgba(245,240,232,0.9)",
                 }}
               >
                 {project.category}
+              </div>
+
+              {/* Gallery indicator */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  left: "60px",
+                  fontSize: "9px",
+                  fontFamily: "monospace",
+                  color: "#F5F0E8",
+                  background: "rgba(61,48,36,0.7)",
+                  padding: "4px 8px",
+                  letterSpacing: "1px",
+                }}
+              >
+                {project.gallery.length} FOTOS
               </div>
 
               {/* Bottom info */}
@@ -170,6 +259,21 @@ export function Projects() {
                     {project.type}
                   </span>
                 </div>
+
+                {/* Click indicator on hover */}
+                {hoveredProject === project.id && (
+                  <div
+                    style={{
+                      marginTop: "12px",
+                      fontSize: "10px",
+                      fontFamily: "monospace",
+                      color: "#C4963A",
+                      letterSpacing: "2px",
+                    }}
+                  >
+                    CLIQUE PARA VER MAIS →
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -186,32 +290,34 @@ export function Projects() {
             flexWrap: "wrap",
           }}
         >
-          <a
-            href="#"
-            style={{
-              fontSize: "11px",
-              letterSpacing: "3px",
-              fontFamily: "monospace",
-              color: "#6B7F4A",
-              textDecoration: "none",
-              padding: "14px 32px",
-              border: "1px solid #6B7F4A",
-              transition: "all 0.3s",
-              display: "inline-block",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#3A4828";
-              e.currentTarget.style.color = "#F5F0E8";
-              e.currentTarget.style.borderColor = "#3A4828";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = "#6B7F4A";
-              e.currentTarget.style.borderColor = "#6B7F4A";
-            }}
-          >
-            CARREGAR MAIS MUNDOS →
-          </a>
+          {hasMore && (
+            <button
+              onClick={() => setShowAll(true)}
+              style={{
+                fontSize: "11px",
+                letterSpacing: "3px",
+                fontFamily: "monospace",
+                color: "#6B7F4A",
+                padding: "14px 32px",
+                border: "1px solid #6B7F4A",
+                background: "transparent",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#3A4828";
+                e.currentTarget.style.color = "#F5F0E8";
+                e.currentTarget.style.borderColor = "#3A4828";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "#6B7F4A";
+                e.currentTarget.style.borderColor = "#6B7F4A";
+              }}
+            >
+              CARREGAR MAIS MUNDOS →
+            </button>
+          )}
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -242,6 +348,9 @@ export function Projects() {
           </a>
         </div>
       </div>
+
+      {/* Project Modal */}
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 }
