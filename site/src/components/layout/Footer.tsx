@@ -12,34 +12,57 @@ export function Footer() {
         zIndex: 1,
       }}
     >
-      <div
-        style={{
-          fontFamily: "var(--font-press-start)",
-          fontSize: "8px",
-          color: "#D4C4A8",
-          letterSpacing: "2px",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-        }}
-      >
-        <span style={{ color: "#8B2D2D" }}>[</span>
-        <span>ETR</span>
-        <span style={{ color: "#8B2D2D" }}>]</span>
-        <span style={{ color: "#7A6248", fontFamily: "monospace", fontSize: "10px" }}>// ENTER THE RENDER</span>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        {/* [ETR] logo com text-shadow */}
+        <span
+          style={{
+            fontFamily: "var(--font-press-start)",
+            fontSize: "8px",
+            letterSpacing: "2px",
+            textShadow: "2px 2px 0 rgba(0,0,0,0.3)",
+          }}
+        >
+          <span style={{ color: "#8B2D2D" }}>[</span>
+          <span style={{ color: "#C4963A" }}>E</span>
+          <span style={{ color: "#D4C4A8" }}>TR</span>
+          <span style={{ color: "#8B2D2D" }}>]</span>
+        </span>
+        {/* ENTER THE RENDER - Orbitron 700 */}
+        <span
+          style={{
+            fontFamily: "var(--font-orbitron)",
+            fontWeight: 700,
+            fontSize: "9px",
+            letterSpacing: "2px",
+            color: "#7A6248",
+          }}
+        >
+          ENTER THE RENDER
+        </span>
       </div>
-      <div
-        style={{
-          fontFamily: "monospace",
-          fontSize: "9px",
-          color: "#7A6248",
-          textAlign: "right",
-          letterSpacing: "1px",
-          lineHeight: 1.8,
-        }}
-      >
-        BUILDING WORLDS. RENDERING FUTURES.
-        <br />© 2026 — ALL RIGHTS RESERVED
+      <div style={{ textAlign: "right" }}>
+        {/* BUILDING WORLDS. RENDERING FUTURES. - Press Start 2P amber */}
+        <div
+          style={{
+            fontFamily: "var(--font-press-start)",
+            fontSize: "7px",
+            color: "#C4963A",
+            letterSpacing: "1px",
+            marginBottom: "8px",
+          }}
+        >
+          BUILDING WORLDS. RENDERING FUTURES.
+        </div>
+        <div
+          style={{
+            fontFamily: "monospace",
+            fontSize: "9px",
+            color: "#7A6248",
+            letterSpacing: "1px",
+          }}
+        >
+          © 2026 — ALL RIGHTS RESERVED
+        </div>
       </div>
     </footer>
   );

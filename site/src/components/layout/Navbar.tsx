@@ -35,23 +35,28 @@ export function Navbar() {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        {/* [ETR] logo com text-shadow */}
         <span
           style={{
             fontFamily: "var(--font-press-start)",
             fontSize: "11px",
             letterSpacing: "2px",
+            textShadow: "2px 2px 0 #D4C4A8",
           }}
         >
           <span style={{ color: "#8B2D2D" }}>[</span>
-          <span style={{ color: "#3A4828" }}>ETR</span>
+          <span style={{ color: "#C4963A" }}>E</span>
+          <span style={{ color: "#3A4828" }}>TR</span>
           <span style={{ color: "#8B2D2D" }}>]</span>
         </span>
+        {/* ENTER THE RENDER - Orbitron 700 */}
         <span
           style={{
-            fontSize: "8px",
+            fontSize: "9px",
             letterSpacing: "3px",
             color: "#A68B6B",
-            fontFamily: "monospace",
+            fontFamily: "var(--font-orbitron)",
+            fontWeight: 700,
           }}
         >
           ENTER THE RENDER

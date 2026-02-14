@@ -34,12 +34,18 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         progress >= 100 ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* Logo */}
-      <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[clamp(16px,3vw,28px)] tracking-[4px] mb-12">
+      {/* Logo com text-shadow */}
+      <div
+        style={{
+          fontFamily: "var(--font-press-start)",
+          textShadow: "2px 2px 0 rgba(0,0,0,0.3)",
+        }}
+        className="text-[clamp(16px,3vw,28px)] tracking-[4px] mb-12"
+      >
         <span className="text-[#8B2D2D]">[</span>
-        <span className="text-[#D4A64A]">E</span>
-        <span>T</span>
-        <span>R</span>
+        <span className="text-[#C4963A]">E</span>
+        <span className="text-[#F5F0E8]">T</span>
+        <span className="text-[#F5F0E8]">R</span>
         <span className="text-[#8B2D2D]">]</span>
       </div>
 

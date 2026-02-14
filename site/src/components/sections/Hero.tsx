@@ -49,7 +49,7 @@ export function Hero({ showContent }: HeroProps) {
         textAlign: "center",
       }}
     >
-      {/* Logo grande */}
+      {/* Logo grande [ETR] com text-shadow */}
       <div
         style={{
           fontFamily: "var(--font-press-start)",
@@ -57,29 +57,45 @@ export function Hero({ showContent }: HeroProps) {
           letterSpacing: "6px",
           marginBottom: "16px",
           lineHeight: 1,
+          textShadow: "4px 4px 0 #D4C4A8",
         }}
       >
-        <span style={{ color: "#8B2D2D", opacity: 0.7 }}>[</span>
+        <span style={{ color: "#8B2D2D" }}>[</span>
         <span style={{ color: "#C4963A" }}>E</span>
         <span style={{ color: "#3A4828" }}>T</span>
         <span style={{ color: "#3A4828" }}>R</span>
-        <span style={{ color: "#8B2D2D", opacity: 0.7 }}>]</span>
+        <span style={{ color: "#8B2D2D" }}>]</span>
       </div>
 
+      {/* ENTER THE RENDER - Orbitron 700 */}
       <div
         style={{
-          fontSize: "clamp(8px, 1.2vw, 12px)",
+          fontSize: "clamp(10px, 1.5vw, 14px)",
           letterSpacing: "clamp(4px, 1.2vw, 10px)",
-          fontFamily: "var(--font-press-start)",
+          fontFamily: "var(--font-orbitron)",
+          fontWeight: 700,
           color: "#6B7F4A",
-          marginBottom: "40px",
+          marginBottom: "12px",
           textTransform: "uppercase",
         }}
       >
-        E N T E R&nbsp;&nbsp;&nbsp;T H E&nbsp;&nbsp;&nbsp;R E N D E R
+        ENTER THE RENDER
       </div>
 
-      {/* Manifesto */}
+      {/* BUILDING WORLDS. RENDERING FUTURES. - Press Start 2P amber */}
+      <div
+        style={{
+          fontFamily: "var(--font-press-start)",
+          fontSize: "clamp(6px, 1vw, 9px)",
+          letterSpacing: "2px",
+          color: "#C4963A",
+          marginBottom: "40px",
+        }}
+      >
+        BUILDING WORLDS. RENDERING FUTURES.
+      </div>
+
+      {/* Manifesto - Orbitron 400, line-height 2.2 */}
       <div
         style={{
           maxWidth: "640px",
@@ -108,9 +124,10 @@ export function Hero({ showContent }: HeroProps) {
 
         <p
           style={{
-            fontFamily: "monospace",
+            fontFamily: "var(--font-orbitron)",
+            fontWeight: 400,
             fontSize: "clamp(13px, 1.3vw, 15px)",
-            lineHeight: 2,
+            lineHeight: 2.2,
             color: "#5C4A36",
             textAlign: "left",
           }}
@@ -127,7 +144,7 @@ export function Hero({ showContent }: HeroProps) {
           </span>
           {typedText.split(highlightText)[0]}
           {typedText.includes(highlightText) && (
-            <span style={{ color: "#3A4828", fontWeight: "bold" }}>
+            <span style={{ color: "#3A4828", fontWeight: 700 }}>
               {highlightText}
             </span>
           )}
