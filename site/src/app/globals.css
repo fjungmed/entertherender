@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+:root {
+  /* ETR Color Palette */
+  --cream: #FAF7F0;
+  --beige-100: #F5F0E8;
+  --beige-200: #E8DCC8;
+  --beige-300: #D4C4A8;
+
+  --olive-100: #8B9A6B;
+  --olive-200: #6B7F4A;
+  --olive-300: #4A5A33;
+  --olive-400: #3A4828;
+
+  --brown-100: #A68B6B;
+  --brown-200: #7A6248;
+  --brown-300: #5C4A36;
+  --brown-400: #3D3024;
+
+  --amber: #C4963A;
+  --amber-light: #D4A64A;
+  --terminal: #7FBF5F;
+  --red: #8B2D2D;
+  --red-light: #A63D3D;
+
+  --background: var(--cream);
+  --foreground: var(--brown-400);
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-beige-100: var(--beige-100);
+  --color-beige-200: var(--beige-200);
+  --color-beige-300: var(--beige-300);
+  --color-olive-100: var(--olive-100);
+  --color-olive-200: var(--olive-200);
+  --color-olive-300: var(--olive-300);
+  --color-olive-400: var(--olive-400);
+  --color-brown-100: var(--brown-100);
+  --color-brown-200: var(--brown-200);
+  --color-brown-300: var(--brown-300);
+  --color-brown-400: var(--brown-400);
+  --color-amber: var(--amber);
+  --color-amber-light: var(--amber-light);
+  --color-terminal: var(--terminal);
+  --color-red: var(--red);
+  --color-red-light: var(--red-light);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'Orbitron', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  cursor: crosshair;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--olive-200);
+  color: var(--beige-100);
+}
+
+a {
+  cursor: pointer;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--olive-200) !important;
+  outline: none;
+}
+
+/* Scanlines overlay */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.015) 2px,
+    rgba(0, 0, 0, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Grid background */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(107, 127, 74, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 127, 74, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pulse animation for status dot */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1.06s step-end infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+/* Loading progress bar animation */
+@keyframes loadingGlow {
+  0%, 100% { box-shadow: 0 0 5px var(--amber); }
+  50% { box-shadow: 0 0 15px var(--amber), 0 0 25px var(--olive-200); }
+}
+
+.loading-glow {
+  animation: loadingGlow 1.5s ease-in-out infinite;
+}
