@@ -155,13 +155,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Main media area - with contain to see full image */}
         <div
           style={{
-            flex: 1,
-            minHeight: 0,
+            height: "60vh",
+            minHeight: "400px",
             position: "relative",
             background: "#1a1a1a",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            overflow: "hidden",
           }}
         >
           {currentMedia?.type === "image" ? (
@@ -171,19 +172,21 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               fill
               style={{
                 objectFit: "contain",
-                padding: "20px",
               }}
               sizes="100vw"
+              priority
             />
           ) : currentMedia?.type === "video" ? (
             <video
               key={currentMedia.src}
               controls
               autoPlay
+              playsInline
               style={{
-                maxWidth: "100%",
-                maxHeight: "100%",
+                width: "100%",
+                height: "100%",
                 objectFit: "contain",
+                background: "#1a1a1a",
               }}
             >
               <source src={currentMedia.src} type="video/mp4" />
