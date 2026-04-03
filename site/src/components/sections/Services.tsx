@@ -4,6 +4,7 @@ export function Services() {
   return (
     <section
       id="services"
+      className="section-pad"
       style={{
         padding: "40px 40px",
         position: "relative",
@@ -35,8 +36,8 @@ export function Services() {
           </div>
         </div>
 
-        {/* Services strip */}
         <div
+          className="services-strip"
           style={{
             display: "flex",
             gap: "2px",

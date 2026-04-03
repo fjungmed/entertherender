@@ -1,6 +1,7 @@
 export function Quote() {
   return (
     <div
+      className="quote-pad"
       style={{
         padding: "72px 40px",
         textAlign: "center",

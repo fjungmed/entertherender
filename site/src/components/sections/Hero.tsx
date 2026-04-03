@@ -11,7 +11,6 @@ export function Hero({ showContent }: HeroProps) {
   const [typedText, setTypedText] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
 
-  // Typing effect
   useEffect(() => {
     if (!showContent) return;
     let i = 0;
@@ -26,7 +25,6 @@ export function Hero({ showContent }: HeroProps) {
     return () => clearInterval(interval);
   }, [showContent]);
 
-  // Cursor blink
   useEffect(() => {
     const interval = setInterval(() => setCursorVisible((v) => !v), 530);
     return () => clearInterval(interval);
@@ -37,6 +35,7 @@ export function Hero({ showContent }: HeroProps) {
   return (
     <section
       id="hero"
+      className="hero-pad"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -49,7 +48,6 @@ export function Hero({ showContent }: HeroProps) {
         textAlign: "center",
       }}
     >
-      {/* Logo grande [ETR] com text-shadow - TUDO em Press Start 2P */}
       <div
         style={{
           fontSize: "clamp(32px, 8vw, 80px)",
@@ -66,7 +64,6 @@ export function Hero({ showContent }: HeroProps) {
         <span style={{ fontFamily: "var(--font-press-start)", color: "#8B2D2D" }}>]</span>
       </div>
 
-      {/* ENTER THE RENDER - Orbitron 700 */}
       <div
         style={{
           fontSize: "clamp(10px, 1.5vw, 14px)",
@@ -81,7 +78,6 @@ export function Hero({ showContent }: HeroProps) {
         ENTER THE RENDER
       </div>
 
-      {/* BUILDING WORLDS. RENDERING FUTURES. - Press Start 2P amber */}
       <div
         style={{
           fontFamily: "var(--font-press-start)",
@@ -94,7 +90,6 @@ export function Hero({ showContent }: HeroProps) {
         BUILDING WORLDS. RENDERING FUTURES.
       </div>
 
-      {/* Manifesto - Orbitron 400, line-height 2.2 */}
       <div
         style={{
           maxWidth: "640px",
@@ -160,11 +155,11 @@ export function Hero({ showContent }: HeroProps) {
         </p>
       </div>
 
-      {/* CTA */}
       <a
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
+        className="hero-cta"
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -195,8 +190,8 @@ export function Hero({ showContent }: HeroProps) {
         CTRL + BUILD + DREAM
       </a>
 
-      {/* Badges */}
       <div
+        className="hero-badges"
         style={{
           display: "flex",
           gap: "24px",
@@ -221,7 +216,6 @@ export function Hero({ showContent }: HeroProps) {
           </span>
         ))}
       </div>
-
     </section>
   );
 }

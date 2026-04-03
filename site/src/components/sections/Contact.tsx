@@ -17,7 +17,6 @@ export function Contact() {
     setStatus("sending");
 
     try {
-      // Using Web3Forms - free email service
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -56,6 +55,7 @@ ${formData.message}
   return (
     <section
       id="contact"
+      className="section-pad"
       style={{
         padding: "80px 40px",
         position: "relative",
@@ -63,6 +63,7 @@ ${formData.message}
       }}
     >
       <div
+        className="contact-grid"
         style={{
           maxWidth: "900px",
           margin: "0 auto",

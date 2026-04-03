@@ -1,6 +1,7 @@
 export function Footer() {
   return (
     <footer
+      className="footer-wrap footer-pad"
       style={{
         padding: "40px",
         background: "#3D3024",
@@ -13,7 +14,6 @@ export function Footer() {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        {/* [ETR] logo com text-shadow - TUDO em Press Start 2P */}
         <span
           style={{
             fontSize: "8px",
@@ -27,7 +27,6 @@ export function Footer() {
           <span style={{ fontFamily: "var(--font-press-start)", color: "#D4C4A8" }}>R</span>
           <span style={{ fontFamily: "var(--font-press-start)", color: "#8B2D2D" }}>]</span>
         </span>
-        {/* ENTER THE RENDER - Orbitron 700 */}
         <span
           style={{
             fontFamily: "var(--font-orbitron)",
@@ -40,8 +39,7 @@ export function Footer() {
           ENTER THE RENDER
         </span>
       </div>
-      <div style={{ textAlign: "right" }}>
-        {/* BUILDING WORLDS. RENDERING FUTURES. - Press Start 2P amber */}
+      <div className="footer-right" style={{ textAlign: "right" }}>
         <div
           style={{
             fontFamily: "var(--font-press-start)",

@@ -149,8 +149,8 @@ function ProjectGallery({ project, onClose }: { project: Project; onClose: () =>
         {/* Main image */}
         <div
           style={{
-            height: "65vh",
-            minHeight: "400px",
+            height: "55vh",
+            minHeight: "300px",
             position: "relative",
             background: "#1a1a1a",
             display: "flex",
@@ -276,6 +276,7 @@ export function Projects() {
   return (
     <section
       id="projects"
+      className="section-pad"
       style={{
         padding: "80px 40px",
         background: "#F5F0E8",
@@ -315,6 +316,7 @@ export function Projects() {
 
         {/* Project cards — hero image from first photo */}
         <div
+          className="grid-2-col"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",

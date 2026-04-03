@@ -167,3 +167,25 @@ textarea:focus {
 .loading-glow {
   animation: loadingGlow 1.5s ease-in-out infinite;
 }
+
+/* ─── Mobile Responsive ─── */
+@media (max-width: 768px) {
+  .grid-2-col { grid-template-columns: 1fr !important; }
+  .grid-3-col { grid-template-columns: 1fr !important; }
+  .grid-4-col { grid-template-columns: repeat(2, 1fr) !important; }
+  .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .services-strip { flex-direction: column !important; }
+  .nav-desktop { display: none !important; }
+  .nav-mobile-toggle { display: flex !important; }
+  .nav-mobile-menu { display: flex !important; }
+  .nav-online { display: none !important; }
+  .footer-wrap { flex-direction: column !important; gap: 16px !important; text-align: center !important; }
+  .footer-right { text-align: center !important; }
+  .section-pad { padding: 48px 20px !important; }
+  .hero-pad { padding: 100px 20px 60px !important; }
+  .hero-cta { padding: 14px 24px !important; font-size: 11px !important; letter-spacing: 2px !important; }
+  .hero-badges { gap: 12px !important; margin-top: 24px !important; }
+  .quote-pad { padding: 48px 20px !important; }
+  .footer-pad { padding: 24px 20px !important; }
+  .modal-main { height: 50vh !important; min-height: 280px !important; }
+}

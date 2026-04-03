@@ -4,6 +4,7 @@ export function Process() {
   return (
     <section
       id="process"
+      className="section-pad"
       style={{
         padding: "80px 40px",
         background: "#3A4828",
@@ -42,6 +43,7 @@ export function Process() {
         </h2>
 
         <div
+          className="grid-4-col"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
@@ -120,22 +122,6 @@ export function Process() {
               >
                 {item.detail}
               </div>
-
-              {i < 3 && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    right: "-8px",
-                    color: "#6B7F4A",
-                    fontFamily: "monospace",
-                    fontSize: "16px",
-                    zIndex: 2,
-                  }}
-                >
-                  →
-                </div>
-              )}
             </div>
           ))}
         </div>
