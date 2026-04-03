@@ -4,7 +4,7 @@ export const WHATSAPP_URL =
 export const CONTACT = {
   email: "hello@entertherender.com",
   phone: "+55 19 98984-2020",
-  instagram: "@enter.therender",
+  instagram: "@carolhenrique.3d",
   behance: "behance.net/entertherender",
 };
 
