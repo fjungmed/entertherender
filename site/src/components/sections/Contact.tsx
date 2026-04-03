@@ -24,7 +24,7 @@ export function Contact() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_KEY", // User needs to replace this
+          access_key: "16fb705f-3488-480c-ac08-72a4a36dd366",
           subject: `Novo projeto: ${formData.projectType} - ${formData.name}`,
           from_name: formData.name,
           email: formData.email,
